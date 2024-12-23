@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "KapsalonPrint";
+  src: url("./assets/fonts/KapsalonPrintDEMO.otf") format("opentype"); /* Adjust the format */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  /* font-family: "KapsalonPrint", sans-serif !important;  */
+  font-family: "KapsalonPrint", sans-serif !important;
+}
+
+body {
+  background-image: url("./assets/background.png") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.font-regular {
+  font-family: Gordita, sans-serif !important;
+}
+
+.shadow-text {
+  text-shadow: rgba(0, 0, 0, 0.298039) 0px 5px 0px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.blood {
+  color: white;
+  text-shadow: 4px 4px 1px #300000, 4px 6px 1px #400000, 4px 8px 1px #500000,
+    4px 10px 1px #600000, 4px 12px 1px #700000, 4px 14px 1px #800000,
+    4px 16px 1px #900000, 4px 18px 1px #a00000, 4px 20px 1px #b00000,
+    4px 22px 1px #c00000, 4px 24px 1px #d00000, 4px 26px 1px #e00000,
+    4px 28px 1px #f00000, 4px 30px 1px #fa0000, 4px 32px 1px #fb0000,
+    4px 34px 1px #fc0000, 4px 36px 1px #fd0000, 4px 38px 1px #fe0000,
+    4px 40px 2px #ff0000;
+}
+
+.canvas-container {
+  border-radius: 20px;
+}
+
+.canvas-container canvas {
+  border-radius: 20px;
+  border: 4px solid #000;
+}
+
+.canvas-mobile,
+.canvas-mobile .canvas-container,
+.canvas-mobile canvas {
+  width: 300px !important;
+  /* height: 300px !important; */
+}
+
+.bounceIn {
+  animation-name: bounceIn;
+}
+@keyframes bounceIn {
+  20%,
+  40%,
+  60%,
+  80%,
+  from,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.animated {
+  animation-duration: 1.25s;
+}
+
+.hero-gradient-Text {
+  font-size: 2rem;
+
+  background: linear-gradient(
+    90deg,
+    #619b69,
+    #174312 8.72%,
+    #ed4f4f 20.57%,
+    #78b68e 37.11%,
+    #28c160 52.98%,
+    #873f1c 66.5%,
+    #df8830 79.35%,
+    #0e5a26 91.31%,
+    #62e088
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: logoText 5s linear infinite;
+}
+@keyframes logoText {
+  to {
+    background-position: -200%;
+  }
+}
+
+.glow div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 0.75rem 0;
+  border-radius: 10rem;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.glow div:hover {
+  transform: scale(1.05);
+}
+
+.red div {
+  border: 3px solid red;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: radial-gradient(
+    70% 130% at 50% 100%,
+    rgb(236, 28, 13),
+    rgba(209, 112, 99, 0.912),
+    #0c0e1c
+  );
+  box-shadow: 0 0.5rem 30px -10px rgba(255, 0, 0, 0.918);
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.red div:hover {
+  box-shadow: 0 0.5rem 40px -10px rgba(255, 0, 0, 0.918);
+}
+
+.p-text {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.transition-transform {
+  transition: transform 0.5s ease-in-out;
+}
