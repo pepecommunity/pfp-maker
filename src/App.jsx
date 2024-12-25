@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import logo from "./assets/logo.png";
-import bgImg from "./assets/bg.png";
+import bpImg from "./assets/bp.png";
 import textImg from "./assets/text.png";
 import ImageScroller from "./ImageScroller";
 import { SketchPicker } from "react-color";
