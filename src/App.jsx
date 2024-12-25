@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import logo from "./assets/logo.png";
-import bpImg from "./assets/bp.png";
+import bgImg from "./assets/bg.png";
 import textImg from "./assets/text.png";
 import ImageScroller from "./ImageScroller";
 import { SketchPicker } from "react-color";
@@ -263,7 +263,7 @@ function App() {
     canvas.clear();
     canvas.backgroundColor = "#fff";
 
-    // changeBackgroundImage(bgImg, canvas);s
+    // changeBackgroundImage(bgImg, canvas)
   };
 
   const handleDelete = () => {
