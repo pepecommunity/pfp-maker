@@ -385,8 +385,8 @@ function App() {
             </div>
           </div>
         )}
-      </div>
-  );
+      </div>;
+  
 
       <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
         <input
