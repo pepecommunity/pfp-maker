@@ -11,7 +11,8 @@ import igIcon from "./assets/IG 120x120.png";
 import tgIcon from "./assets/TG 120x120.png";
 import tiktokIcon from "./assets/TikTok 120x120.png";
 import xIcon from "./assets/X 120x120.png";
-
+import { Analytics } from "@vercel/analytics/react";
+  
 function App() {
   const [stickers, setStickers] = useState([]);
 
