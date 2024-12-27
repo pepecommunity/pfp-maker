@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import logo from "./assets/logo.png";
+// eslint-disable-next-line no-unused-vars
 import bgImg from "./assets/bg.png";
 import textImg from "./assets/text.png";
-import ImageScroller from "./ImageScroller";
 import { SketchPicker } from "react-color";
 import dexscreenerIcon from "./assets/Dexscreener 120x120.png";
 import dextoolsIcon from "./assets/dextools 120x120.png";
@@ -11,6 +11,7 @@ import igIcon from "./assets/IG 120x120.png";
 import tgIcon from "./assets/TG 120x120.png";
 import tiktokIcon from "./assets/TikTok 120x120.png";
 import xIcon from "./assets/X 120x120.png";
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Analytics } from "@vercel/analytics/react";
@@ -70,41 +71,42 @@ function App() {
     }
   }, [canvas, selectedObject, isMobile]);
 
-  const changeBackgroundImage = (backgroundImage, canvas) => {
-    console.log(isMobile);
-    fabric.Image.fromURL(backgroundImage, (img) => {
-      // Calculate the new dimensions respecting the maximum width of 550px
-      let newWidth = img.width;
-      let newHeight = img.height;
-
-      let maxWidth = isMobile ? 300 : 550;
-
-      if (img.width > maxWidth) {
-        newWidth = maxWidth;
-        newHeight = (maxWidth / img.width) * img.height;
-      }
-
-      canvas.setWidth(newWidth);
-      canvas.setHeight(newHeight);
-
-      canvas.renderAll();
-
-      canvas.setBackgroundImage(
-        backgroundImage,
-        canvas.renderAll.bind(canvas),
-        {
-          scaleX: canvas.width / img.width,
-          scaleY: canvas.height / img.height,
-        }
-      );
-    });
-  };
-
   useEffect(() => {
-    if (!canvas) return;
+    const changeBackgroundImage = (backgroundImage, canvas) => {
+      console.log(isMobile);
+      fabric.Image.fromURL(backgroundImage, (img) => {
+        // Calculate the new dimensions respecting the maximum width of 550px
+        let newWidth = img.width;
+        let newHeight = img.height;
+  
+        let maxWidth = isMobile ? 300 : 550;
+  
+        if (img.width > maxWidth) {
+          canvas.setWidth(newWidth);
+          canvas.setHeight(newHeight);
+        }
 
+      });
+      }; 
+  
+    if (!canvas) return;
+  
     if (backgroundImage) {
       changeBackgroundImage(backgroundImage, canvas);
+    } else {
+      canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
+    }
+  }, [canvas, backgroundImage, isMobile]);
+     
+  useEffect(() => {
+    const changeBackgroundImage = (image, canvas) => {
+      canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas));
+    };
+  
+    if (!canvas) return;
+  
+    if (backgroundImage) {
+      changeBackgroundImage(backgroundImage, canvas); // Use it here
     } else {
       canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
     }
@@ -338,7 +340,7 @@ function App() {
         <meta name="description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings."  />
         <meta name="author" content="Ninja Cat Team" />
         <meta name="robots" content="index, follow" />
-        <title>Ninja Cat CTO - $NC: Solana's Shadow Warrior</title>
+        <title>Ninja Cat CTO - $NC: Solana&#39;s Shadow Warrior</title>
         <link rel="icon" href="/assets/$NC-Ninja-Cat-logo-favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/assets/$NC-Ninja-Cat-logo-apple-touch-180.png" sizes="180x180" />
         <link rel="icon" href="/assets/$NC-Ninja-Cat-logo-favicon-16x16.png" sizes="16x16" type="image/png" />
@@ -347,7 +349,7 @@ function App() {
         <meta name="msapplication-TileColor" content="#FCC01E" />
         <meta property="og:url" content="https://ninjacat.ch/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
+        <meta property="og:title" content="Ninja Cat CTO - $NC: Solana\'s Shadow Warrior" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:image" content="https://ninjacat.ch/assets/NC-twitter-card-1200x627.png" />
         <meta property="og:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings." />
@@ -356,7 +358,7 @@ function App() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="ninjacat.ch" />
         <meta property="twitter:url" content="https://ninjacat.ch" />
-        <meta name="twitter:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
+        <meta name="twitter:title" content="Ninja Cat CTO - $NC: Solana\'s Shadow Warrior" />
         <meta name="twitter:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings."  />
         <meta name="twitter:image" content="https://ninjacat.ch/assets/NC-twitter-card-1200x627.png" />
         <link rel="canonical" href="https://ninjacat.ch/" />
@@ -417,7 +419,7 @@ function App() {
             </div>
           </div>
         )}
-      </div>;
+      </div>
   
 
       <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
@@ -550,6 +552,5 @@ function App() {
       </div>
     </div>
   );
-}
 
-export default App;
+} export default App;
