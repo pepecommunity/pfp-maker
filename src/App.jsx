@@ -11,8 +11,9 @@ import igIcon from "./assets/IG 120x120.png";
 import tgIcon from "./assets/TG 120x120.png";
 import tiktokIcon from "./assets/TikTok 120x120.png";
 import xIcon from "./assets/X 120x120.png";
-import { Analytics } from "@vercel/analytics/react";
-  
+import React from 'react';
+import { Helmet } from 'react-helmet';
+
 function App() {
   const [stickers, setStickers] = useState([]);
 
@@ -330,7 +331,36 @@ function App() {
 
   return (
     <div className={`min-h-screen`}>
-      <div className="flex item-center justify-center mx-5">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings."  />
+        <meta name="author" content="Ninja Cat Team" />
+        <meta name="robots" content="index, follow" />
+        <title>Ninja Cat CTO - $NC: Solana's Shadow Warrior</title>
+        <link rel="icon" href="/assets/$NC-Ninja-Cat-logo-favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/assets/$NC-Ninja-Cat-logo-apple-touch-180.png" sizes="180x180" />
+        <link rel="icon" href="/assets/$NC-Ninja-Cat-logo-favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/assets/$NC-Ninja-Cat-logo-msapplication-TileImage.png" />
+        <meta name="msapplication-TileImage" content="/assets/$NC-Ninja-Cat-logo-msapplication-TileImage.png" />
+        <meta name="msapplication-TileColor" content="#FCC01E" />
+        <meta property="og:url" content="https://ninjacat.ch/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content="https://ninjacat.ch/assets/NC-twitter-card-1200x627.png" />
+        <meta property="og:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings." />
+        <meta property="og:updated_time" content="1734829524" />
+        <meta property="og:image:alt" content="Stealth crypto moves $NC CTO with @solninjacatsol" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="ninjacat.ch" />
+        <meta property="twitter:url" content="https://ninjacat.ch" />
+        <meta name="twitter:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
+        <meta name="twitter:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings."  />
+        <meta name="twitter:image" content="https://ninjacat.ch/assets/NC-twitter-card-1200x627.png" />
+        <link rel="canonical" href="https://ninjacat.ch/" />
+      </Helmet>
+       <div className="flex item-center justify-center mx-5">
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
             <div className="w-full flex items-center justify-center gap-10">
