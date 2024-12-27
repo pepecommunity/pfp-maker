@@ -367,7 +367,7 @@ function App() {
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
             <div className="w-full flex items-center justify-center gap-10">
-              <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="" />
+              <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
               <h1 className=" bounceIn animated text-white mt-10 text-5xl lg:mb-10 md:text-7xl text-center font-black ">
                 Ninja Cat PFP Maker
               </h1>
@@ -395,7 +395,7 @@ function App() {
           </div>
         ) : (
           <div className="w-full pt-5 flex items-center justify-around">
-            <img src={logo} className="w-[100px] h-[100px]" alt="" />
+            <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
             <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
               <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
