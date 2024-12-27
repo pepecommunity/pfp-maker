@@ -398,7 +398,7 @@ function App() {
             <img src={logo} className="w-[100px] h-[100px]" alt="" />
             <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
-              <a href="https://t.me/solninjacat" target="_blank" rel="noreferrer">
+              <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
                 <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
