@@ -13,6 +13,7 @@ import tiktokIcon from "./assets/TikTok 120x120.png";
 import xIcon from "./assets/X 120x120.png";
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [stickers, setStickers] = useState([]);
