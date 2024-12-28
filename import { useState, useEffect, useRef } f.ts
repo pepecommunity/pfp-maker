@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import logo from "./assets/logo.png";
@@ -16,8 +15,8 @@ import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
-  // const [canvasWidth, setCanvasWidth] = useState(550); // Unused variable
-  // const [canvasHeight, setCanvasHeight] = useState(550); // Unused variable
+  const [canvasWidth, setCanvasWidth] = useState(550);
+  const [canvasHeight, setCanvasHeight] = useState(550);
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
   const bgImgInputRef = useRef(null);
@@ -43,7 +42,6 @@ function App() {
     };
 
     handleResize();
-
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
 
@@ -51,8 +49,7 @@ function App() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
     };
-  }, [backgroundImage, canvas, isMobile]);
-
+  }, []);
   useEffect(() => {
     if (canvasRef.current && !canvas) {
       const newCanvas = new fabric.Canvas(canvasRef.current, {
@@ -61,18 +58,6 @@ function App() {
         backgroundColor: "#fff",
       });
       setCanvas(newCanvas);
-
-      newCanvas.on("selection:created", (e) => {
-        setSelectedObject(e.selected[0]);
-      });
-
-      newCanvas.on("object:modified", (e) => {
-        setSelectedObject(e.target);
-      });
-
-      newCanvas.on("selection:cleared", () => {
-        setSelectedObject(null);
-      });
 
       return () => {
         newCanvas.dispose(); // Clean up on component unmount
@@ -92,16 +77,6 @@ function App() {
       };
 
       updateImagePosition();
-
-      const objectModifiedHandler = () => {
-        updateImagePosition();
-      };
-
-      canvas.on("object:modified", objectModifiedHandler);
-
-      return () => {
-        canvas.off("object:modified", objectModifiedHandler);
-      };
     }
   }, [selectedObject]);
 
@@ -148,7 +123,6 @@ function App() {
 
     importStickers();
   }, []);
-
   useEffect(() => {
     if (selectedObject) {
       const updateImagePosition = () => {
@@ -241,7 +215,6 @@ function App() {
       canvas.add(image);
     });
   };
-
   return (
     <div className={`min-h-screen`}>
       <Helmet>
@@ -273,7 +246,7 @@ function App() {
         <meta name="twitter:image" content="https://ninjacat.ch/src/assets/NC-twitter-card-1200x627.png" />
         <link rel="canonical" href="https://ninjacat.ch/"/>
       </Helmet>
-      <div className="flex item-center justify-center mx-5">
+       <div className="flex item-center justify-center mx-5">
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
             <div className="w-full flex items-center justify-center gap-10">
@@ -287,181 +260,185 @@ function App() {
                 <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w-[40px] h/[40px]" />
+                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w/[40px] h/[40px]" />
+                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w/[40px] h/[40px]" />
+                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w/[40px] h/[40px]" />
+                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w/[40px] h/[40px]" />
+                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
               </a>
             </div>
           </div>
         ) : (
-          <div className="w/full pt-5 flex items-center justify-around">
-            <img src={logo} className="w/[100px] h/[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
-            <img src={textImg} className="h/[150px]" alt="" />
+          <div className="w-full pt-5 flex items-center justify-around">
+            <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
+            <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
               <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={tgIcon} alt="Telegram" className="w/[40px] h/[40px]" />
+                <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w/[40px] h/[40px]" />
+                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w/[40px] h/[40px]" />
+                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w/[40px] h/[40px]" />
+                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w/[40px] h/[40px]" />
+                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w/[40px] h/[40px]" />
+                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
               </a>
             </div>
           </div>
         )}
       </div>
+      <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        ref={bgImgInputRef}
+        onChange={handleBackgroundImageChange}
+      />
 
-      <div className="w/full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
-        <input
-          type="file"
-          accept="image/*"
-          hidden
-          ref={bgImgInputRef}
-          onChange={handleBackgroundImageChange}
-        />
-
-        <input
-          type="file"
-          accept="image/*"
-          hidden
-          ref={stickerImgInputRef}
-          onChange={handleAddSticker}
-        />
-        <div className="flex-1 px-5">
-          <div
-            className={`mx-auto mb-7 bg-transparent rounded-xl relative
-          ${isMobile ? "canvas-mobile" : "w/[550px]"}
-          `}
-          >
-            <canvas
-              ref={canvasRef}
-              // style={{ width: "550px", height: "550px" }}
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        ref={stickerImgInputRef}
+        onChange={handleAddSticker}
+      />
+      <div className="flex-1 px-5">
+        <div
+          className={`mx-auto mb-7 bg-transparent rounded-xl relative
+        ${isMobile ? "canvas-mobile" : "w-[550px]"}
+        `}
+        >
+          <canvas
+            ref={canvasRef}
+            // style={{ width: "550px", height: "550px" }}
+          />
+          {selectedObject && (
+            <img
+              onClick={handleDelete}
+              id="selected-img"
+              style={{
+                position: "absolute",
+                top: selectedObject.top - 30,
+                left: selectedObject.left,
+                cursor: "pointer",
+              }}
+              src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
+              width={20}
+              height={20}
+              alt=""
             />
-            {selectedObject && (
-              <img
-                onClick={handleDelete}
-                id="selected-img"
-                style={{
-                  position: "absolute",
-                  top: selectedObject.top - 30,
-                  left: selectedObject.left,
-                  cursor: "pointer",
-                }}
-                src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
-                width={20}
-                height={20}
-                alt=""
-              />
-            )}
-          </div>
-          {selectedObject && selectedObject.type === "text" && (
-            <div className="flex justify-center my-10">
-              <SketchPicker color={textColor} onChange={handleColorChange} />
-            </div>
           )}
-          <div className="flex flex-wrap w/full gap-5 justify-center pb-10 lg:pb-0">
-            <div
-              onClick={() => stickerImgInputRef.current.click()}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                UPLOAD STICKER
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-            <div
-              onClick={() => bgImgInputRef.current.click()}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                UPLOAD BACKGROUND
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-            <div
-              onClick={handleAddText}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                ADD TEXT
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-            <div
-              onClick={handleCanvasClear}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                RESET
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-
-            <div
-              onClick={saveImageToLocal}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                SAVE MEME
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-
-            <div
-              onClick={copyCanvasToClipboard}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm/w/full md/w-1/3 lg/w-1/3"
-            >
-              <p className=" text-center text-2xl tracking-wider font-medium relative">
-                COPY MEME
-              </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
-            </div>
-          </div>
         </div>
-
-        <div className="flex flex-1 mt-5 w/full lg/w-[60%] px-5 lg/pl-0 pb-10 lg/pb-0">
-          <div className="w-0 lg/w-1 h/full bg-white">.</div>
-          <div className="w/full pl-5">
-            {/* <h1 className="text-4xl text-center text-white mt-10">
-              Create Your PFP
-            </h1> */}
-            <div className="flex flex-wrap mt-10 justify-center lg/justify-start">
-              {stickers.length != 0 &&
-                stickers.map((img, i) => (
-                  <img
-                    src={img}
-                    key={i}
-                    onClick={() => handleAddImage(img)}
-                    className="  w/[150px] h/[150px] m-2 cursor-pointer"
-                  ></img>
-                ))}
-            </div>
+        {selectedObject && selectedObject.type === "text" && (
+          <div className="flex justify-center my-10">
+            <SketchPicker color={textColor} onChange={handleColorChange} />
           </div>
-        </div>
-      </div>
-      <Analytics/>
-    </div>
-  );
-}
+        )}
+        <div className="flex flex-wrap w-full gap-5 justify-center pb-10 lg:pb-0">
+          <div
+            onClick={() => stickerImgInputRef.current.click()}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+          >
+            <p className=" text-center text-2xl tracking-wider font-medium relative">
+              UPLOAD STICKER
+            </p>
+            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+          </div>
+          <div
+            onClick={() => bgImgInputRef.current.click()}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+          >
+            <p className=" text-center text-2xl tracking-wider font-medium relative">
+              UPLOAD BACKGROUND
+            </p>
+            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+          </div>
+          <div
+            onClick={handleAddText}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration      <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        ref={bgImgInputRef}
+        onChange={handleBackgroundImageChange}
+      />
 
-export default App;
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        ref={stickerImgInputRef}
+        onChange={handleAddSticker}
+      />
+      <div className="flex-1 px-5">
+        <div
+          className={`mx-auto mb-7 bg-transparent rounded-xl relative
+        ${isMobile ? "canvas-mobile" : "w-[550px]"}
+        `}
+        >
+          <canvas
+            ref={canvasRef}
+            // style={{ width: "550px", height: "550px" }}
+          />
+          {selectedObject && (
+            <img
+              onClick={handleDelete}
+              id="selected-img"
+              style={{
+                position: "absolute",
+                top: selectedObject.top - 30,
+                left: selectedObject.left,
+                cursor: "pointer",
+              }}
+              src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
+              width={20}
+              height={20}
+              alt=""
+            />
+          )}
+        </div>
+        {selectedObject && selectedObject.type === "text" && (
+          <div className="flex justify-center my-10">
+            <SketchPicker color={textColor} onChange={handleColorChange} />
+          </div>
+        )}
+        <div className="flex flex-wrap w-full gap-5 justify-center pb-10 lg:pb-0">
+          <div
+            onClick={() => stickerImgInputRef.current.click()}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+          >
+            <p className=" text-center text-2xl tracking-wider font-medium relative">
+              UPLOAD STICKER
+            </p>
+            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+          </div>
+          <div
+            onClick={() => bgImgInputRef.current.click()}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+          >
+            <p className=" text-center text-2xl tracking-wider font-medium relative">
+              UPLOAD BACKGROUND
+            </p>
+            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+          </div>
+          <div
+            onClick={handleAddText}
+            className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration
