@@ -1,8 +1,4 @@
 export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -16,9 +12,13 @@ export default {
         secondaryBlue: "#8f8b8b",
       },
       fontFamily: {
-        main: ["KapsalonPrint"],
+        main: ["TrueGore-Regular"],
         regular: ["Gordita"],
       },
     },
+  },
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
   },
 };
