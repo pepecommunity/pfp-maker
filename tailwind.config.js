@@ -7,18 +7,11 @@ export default {
         'landscape-mobile': { 'raw': '(min-width: 481px) and (max-width: 768px) and (orientation: landscape)' },
         'desktop': { 'raw': '(min-width: 769px)' },
       },
-      colors: {
-        mainBlue: "#d9d7d7",
-        secondaryBlue: "#8f8b8b",
-      },
       fontFamily: {
         main: ["TrueGore-Regular"],
         regular: ["Gordita"],
       },
     },
   },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+  plugins: [],
 };

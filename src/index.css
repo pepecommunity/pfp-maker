@@ -5,7 +5,6 @@
 @font-face {
   font-family: "KapsalonPrint";
   src: url("./assets/fonts/KapsalonPrintDEMO.otf") format("opentype");
-  
 }
 @font-face {
   font-family: "True Gore";
@@ -17,7 +16,6 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; /* Standard property added for compatibility */
-  /* font-family: "KapsalonPrint", sans-serif !important; */
   font-family: "KapsalonPrint", sans-serif !important;
 }
 
