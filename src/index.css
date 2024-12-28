@@ -18,6 +18,12 @@
   /* font-family: "KapsalonPrint", sans-serif !important;  */
   font-family: "KapsalonPrint", sans-serif !important;
 }
+/* New rule to override the font for the specific h1 */
+h1.bounceIn.animated.text-white.mt-10.text-5xl.lg\:mb-10.md\:text-7xl.text-center.font-black {
+  font-family: "True Gore", sans-serif !important;
+  color: #880808;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
 
 body {
   background-image: url("./assets/background.png") !important;
