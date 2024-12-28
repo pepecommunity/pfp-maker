@@ -1,3 +1,4 @@
+/* tailwind-includes.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,14 +16,21 @@
   margin: 0;
   padding: 0;
   -webkit-appearance: none;
-  /* font-family: "KapsalonPrint", sans-serif !important;  */
+  -moz-appearance: none;
+  appearance: none; /* Standard property added for compatibility */
+  /* font-family: "KapsalonPrint", sans-serif !important; */
   font-family: "KapsalonPrint", sans-serif !important;
 }
+
 /* New rule to override the font for the specific h1 */
 h1.bounceIn.animated.text-white.mt-10.text-5xl.lg\:mb-10.md\:text-7xl.text-center.font-black {
   font-family: "True Gore", sans-serif !important;
   color: #880808;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  font-size: 3rem; /* Adjust this value as needed */
+  line-height: 1.1; /* Adjust this value for better spacing */
+  width: 100%; /* Assuming this h1 is a block-level element */
+  text-align: center;
 }
 
 body {
@@ -31,12 +39,8 @@ body {
   background-repeat: no-repeat;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */  
 }
 
 .font-regular {
