@@ -27,6 +27,8 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [textColor, setTextColor] = useState("#000");
+  // const [isAtFront, setIsAtFront] = useState(false);
+  // const [isAtBack, setIsAtBack] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -97,6 +99,20 @@ function App() {
   }, [canvas, backgroundImage, isMobile]);
      
   useEffect(() => {
+    const changeBackgroundImage = (image, canvas) => {
+      canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas));
+    };
+  
+    if (!canvas) return;
+  
+    if (backgroundImage) {
+      changeBackgroundImage(backgroundImage, canvas); // Use it here
+    } else {
+      canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
+    }
+  }, [canvas, backgroundImage, isMobile]);
+
+  useEffect(() => {
     const importStickers = async () => {
       // Import images from all subfolders in the 'assets/stickers' directory
       const imageContext = import.meta.glob(
@@ -119,6 +135,13 @@ function App() {
       backgroundColor: "#fff",
     });
 
+    // const newCanvas = new fabric.Canvas(canvasRef.current, {
+    //   width: 300,
+    //   height: 300,
+    //   backgroundColor: "#fff",
+    // });
+    // changeBackgroundImage(bgImg, newCanvas);
+
     setCanvas(newCanvas);
 
     // Event listener for object selection
@@ -134,6 +157,13 @@ function App() {
     newCanvas.on("selection:cleared", () => {
       setSelectedObject(null);
     });
+
+    // fabric.Image.fromURL(bgImg, (img) => {
+    //   newCanvas.setBackgroundImage(img, newCanvas.renderAll.bind(newCanvas), {
+    //     scaleX: newCanvas.width / img.width,
+    //     scaleY: newCanvas.height / img.height,
+    //   });
+    // });
 
     return () => {
       newCanvas.dispose();
@@ -287,8 +317,21 @@ function App() {
     }
   };
 
+  // useEffect(() => {
+  //   if (selectedObject && canvas) {
+  //     const isObjectInFront =
+  //       selectedObject === canvas.getObjects()[canvas.getObjects().length - 1];
+  //     const isObjectInBack = selectedObject === canvas.getObjects()[0];
+  //     setIsAtFront(isObjectInFront);
+  //     setIsAtBack(isObjectInBack);
+  //   } else {
+  //     setIsAtFront(false);
+  //     setIsAtBack(false);
+  //   }
+  // }, [selectedObject, canvas]);
+
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen`}>
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -322,7 +365,7 @@ function App() {
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
             <div className="w-full flex items-center justify-center gap-10">
-              <img src={logo} className="w-[100px] h-[100px] rounded-[20px]" alt="ninja Cat project Logo" />
+              <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
               <h1 className=" bounceIn animated text-white mt-10 text-5xl lg:mb-10 md:text-7xl text-center font-black ">
                 Ninja Cat PFP Maker
               </h1>
@@ -350,26 +393,26 @@ function App() {
           </div>
         ) : (
           <div className="w-full pt-5 flex items-center justify-around">
-            <img src={logo} className="w-[100px] h-[100px] rounded-[20px]" alt="ninja Cat project Logo" />
+            <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
             <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
               <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
                 <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w/[40px] h/[40px]" />
+                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w/[40px] h/[40px]" />
+                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w/[40px] h/[40px]" />
+                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w/[40px] h/[40px]" />
+                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w/[40px] h/[40px]" />
+                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
               </a>
             </div>
           </div>
@@ -457,7 +500,7 @@ function App() {
 
             <div
               onClick={saveImageToLocal}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 SAVE MEME
@@ -477,9 +520,9 @@ function App() {
           </div>
         </div>
 
-        <div className="flex flex-1 mt-5 w/full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
-          <div className="w-0 lg:w-1 h/full bg-white">.</div>
-          <div className="w/full pl-5">
+        <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
+          <div className="w-0 lg:w-1 h-full bg-white">.</div>
+          <div className="w-full pl-5">
             {/* <h1 className="text-4xl text-center text-white mt-10">
               Create Your PFP
             </h1> */}
