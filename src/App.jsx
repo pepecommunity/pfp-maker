@@ -333,7 +333,7 @@ function App() {
   // }, [selectedObject, canvas]);
 
   return (
-    <div className={`min-h-screen`}>
+    <div className="min-h-screen">
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -367,7 +367,7 @@ function App() {
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
             <div className="w-full flex items-center justify-center gap-10">
-              <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
+              <img src={logo} className="w-[100px] h-[100px] rounded-[20px]" alt="ninja Cat project Logo" />
               <h1 className=" bounceIn animated text-white mt-10 text-5xl lg:mb-10 md:text-7xl text-center font-black ">
                 Ninja Cat PFP Maker
               </h1>
@@ -395,7 +395,7 @@ function App() {
           </div>
         ) : (
           <div className="w-full pt-5 flex items-center justify-around">
-            <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
+            <img src={logo} className="w-[100px] h-[100px] rounded-[20px]" alt="ninja Cat project Logo" />
             <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
               <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
@@ -444,19 +444,15 @@ function App() {
           ${isMobile ? "canvas-mobile" : "w-[550px]"}
           `}
           >
-            <canvas
-              ref={canvasRef}
-              // style={{ width: "550px", height: "550px" }}
-            />
+            <canvas ref={canvasRef} className="w-full h-full" />
             {selectedObject && (
               <img
                 onClick={handleDelete}
                 id="selected-img"
+                className="absolute cursor-pointer"
                 style={{
-                  position: "absolute",
                   top: selectedObject.top - 30,
                   left: selectedObject.left,
-                  cursor: "pointer",
                 }}
                 src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
                 width={20}
