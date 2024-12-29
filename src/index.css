@@ -109,7 +109,7 @@ body {
 .bounceIn {
   animation-name: bounceIn;
 }
-}
+
 @keyframes bounceIn {
   20%,
   40%,
