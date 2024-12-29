@@ -27,8 +27,6 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [textColor, setTextColor] = useState("#000");
-  // const [isAtFront, setIsAtFront] = useState(false);
-  // const [isAtBack, setIsAtBack] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,24 +97,10 @@ function App() {
   }, [canvas, backgroundImage, isMobile]);
      
   useEffect(() => {
-    const changeBackgroundImage = (image, canvas) => {
-      canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas));
-    };
-  
-    if (!canvas) return;
-  
-    if (backgroundImage) {
-      changeBackgroundImage(backgroundImage, canvas); // Use it here
-    } else {
-      canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
-    }
-  }, [canvas, backgroundImage, isMobile]);
-
-  useEffect(() => {
     const importStickers = async () => {
       // Import images from all subfolders in the 'assets/stickers' directory
       const imageContext = import.meta.glob(
-        "./assets/stickers/*.(png|jpg|jpeg|svg)"
+        "./assets/stickers/*.{png,jpg,jpeg,svg}"
       );
       const imagePaths = await Promise.all(
         Object.values(imageContext).map(async (importPromise) => {
@@ -132,17 +116,8 @@ function App() {
     importStickers();
 
     const newCanvas = new fabric.Canvas(canvasRef.current, {
-      width: window.innerWidth <= 768 ? 300 : 550,
-      height: window.innerWidth <= 768 ? 300 : 550,
       backgroundColor: "#fff",
     });
-
-    // const newCanvas = new fabric.Canvas(canvasRef.current, {
-    //   width: 300,
-    //   height: 300,
-    //   backgroundColor: "#fff",
-    // });
-    // changeBackgroundImage(bgImg, newCanvas);
 
     setCanvas(newCanvas);
 
@@ -159,13 +134,6 @@ function App() {
     newCanvas.on("selection:cleared", () => {
       setSelectedObject(null);
     });
-
-    // fabric.Image.fromURL(bgImg, (img) => {
-    //   newCanvas.setBackgroundImage(img, newCanvas.renderAll.bind(newCanvas), {
-    //     scaleX: newCanvas.width / img.width,
-    //     scaleY: newCanvas.height / img.height,
-    //   });
-    // });
 
     return () => {
       newCanvas.dispose();
@@ -233,7 +201,7 @@ function App() {
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const uint8Array = new Uint8Array(arrayBuffer);
 
-    for (let i = 0; i < byteString.length; i++) {
+    for (let i = 0; i < byteString.length; i++) { // Corrected line
       uint8Array[i] = byteString.charCodeAt(i);
     }
 
@@ -286,7 +254,7 @@ function App() {
   const handleAddText = () => {
     const text = prompt("Enter your text:");
 
-    const font = new FontFace("Bebas Kai", "url(/fonts/BebasKai.ttf)");
+    const font = new FontFace("True Gore", "url(/fonts/TrueGore-Regular.otf)"); // Changed to True Gore
 
     font
       .load()
@@ -294,7 +262,7 @@ function App() {
         document.fonts.add(loadedFont);
 
         const newText = new fabric.Text(text, {
-          fontFamily: "Bebas Kai",
+          fontFamily: "True Gore", // Changed to True Gore
           fontSize: 40,
           fill: "#000",
           fontWeight: "bold",
@@ -318,19 +286,6 @@ function App() {
       canvas.renderAll();
     }
   };
-
-  // useEffect(() => {
-  //   if (selectedObject && canvas) {
-  //     const isObjectInFront =
-  //       selectedObject === canvas.getObjects()[canvas.getObjects().length - 1];
-  //     const isObjectInBack = selectedObject === canvas.getObjects()[0];
-  //     setIsAtFront(isObjectInFront);
-  //     setIsAtBack(isObjectInBack);
-  //   } else {
-  //     setIsAtFront(false);
-  //     setIsAtBack(false);
-  //   }
-  // }, [selectedObject, canvas]);
 
   return (
     <div className="min-h-screen">
@@ -402,19 +357,19 @@ function App() {
                 <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
               </a>
               <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
+                <img src={xIcon} alt="X" className="w/[40px] h/[40px]" />
               </a>
               <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
+                <img src={igIcon} alt="Instagram" className="w/[40px] h/[40px]" />
               </a>
               <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
+                <img src={tiktokIcon} alt="TikTok" className="w/[40px] h/[40px]" />
               </a>
               <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
+                <img src={dexscreenerIcon} alt="Dexscreener" className="w/[40px] h/[40px]" />
               </a>
               <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
+                <img src={dextoolsIcon} alt="Dextools" className="w/[40px] h/[40px]" />
               </a>
             </div>
           </div>
@@ -439,12 +394,8 @@ function App() {
           onChange={handleAddSticker}
         />
         <div className="flex-1 px-5">
-          <div
-            className={`mx-auto mb-7 bg-transparent rounded-xl relative
-          ${isMobile ? "canvas-mobile" : "w-[550px]"}
-          `}
-          >
-            <canvas ref={canvasRef} className="w-full h-full" />
+          <div className="mx-auto mb-7 bg-transparent rounded-xl relative w-full h-full">
+            <canvas ref={canvasRef} className="w-full h-full portrait-mobile:w-[300px] landscape-mobile:w-[400px] desktop:w-[550px]" />
             {selectedObject && (
               <img
                 onClick={handleDelete}
@@ -496,39 +447,39 @@ function App() {
             </div>
             <div
               onClick={handleCanvasClear}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 RESET
               </p>
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
 
             <div
               onClick={saveImageToLocal}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 SAVE MEME
               </p>
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
 
             <div
               onClick={copyCanvasToClipboard}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 COPY MEME
               </p>
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
-          <div className="w-0 lg:w-1 h-full bg-white">.</div>
-          <div className="w-full pl-5">
+        <div className="flex flex-1 mt-5 w/full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
+          <div className="w-0 lg:w-1 h/full bg-white">.</div>
+          <div className="w/full pl-5">
             {/* <h1 className="text-4xl text-center text-white mt-10">
               Create Your PFP
             </h1> */}
@@ -539,7 +490,7 @@ function App() {
                     src={img}
                     key={i}
                     onClick={() => handleAddImage(img)}
-                    className="  w-[150px] h-[150px] m-2 cursor-pointer"
+                    className="  w/[150px] h/[150px] m-2 cursor-pointer"
                   ></img>
                 ))}
             </div>

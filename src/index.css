@@ -1,3 +1,4 @@
+/* Ensure this file is processed by PostCSS with the Tailwind CSS plugin */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,10 +14,8 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none; /* Standard property added for compatibility */
-  font-family: "KapsalonPrint", sans-serif !important;
+  font-family: "True Gore", sans-serif !important; /* Changed to True Gore */
 }
 
 h1.bounceIn.animated.text-white.mt-10.text-5xl.lg\:mb-10.md\:text-7xl.text-center.font-black {
@@ -38,7 +37,7 @@ body {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */  
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .font-regular {
@@ -53,7 +52,6 @@ body {
   0% {
     transform: translateX(0%);
   }
-
   100% {
     transform: translateX(-100%);
   }
@@ -77,13 +75,6 @@ body {
 .canvas-container canvas {
   border-radius: 20px;
   border: 4px solid #000;
-}
-
-.canvas-mobile,
-.canvas-mobile .canvas-container,
-.canvas-mobile canvas {
-  width: 300px !important;
-  /* height: 300px !important; */
 }
 
 .bounceIn {
@@ -127,7 +118,6 @@ body {
 
 .hero-gradient-Text {
   font-size: 2rem;
-
   background: linear-gradient(
     90deg,
     #619b69,

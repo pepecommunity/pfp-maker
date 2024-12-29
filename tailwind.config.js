@@ -1,5 +1,9 @@
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+/* eslint-env node */
+module.exports = {
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  },
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       screens: {
@@ -8,10 +12,13 @@ export default {
         'desktop': { 'raw': '(min-width: 769px)' },
       },
       fontFamily: {
-        main: ["TrueGore-Regular"],
-        regular: ["Gordita"],
+        main: ["True Gore"],
+        regular: ["True Gore"], // Changed to True Gore
       },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 };
