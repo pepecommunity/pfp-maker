@@ -92,20 +92,41 @@ body {
 
 .canvas-container {
   border-radius: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-.canvas-container canvas {
+.canvas-element {
   border-radius: 20px;
   border: 4px solid #000;
+  width: 100%;
+  height: 100%;
 }
 
-.canvas-mobile,
-.canvas-mobile .canvas-container,
-.canvas-mobile canvas {
-  width: 300px !important;
-  /* height: 300px !important; */
+@media (max-width: 480px) {
+  .canvas-container {
+    width: 300px;
+    height: 300px;
+  }
 }
 
+@media (min-width: 481px) and (max-width: 768px) {
+  .canvas-container {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 769px) {
+  .canvas-container {
+    width: 550px;
+    height: 550px;
+  }
+}
 .bounceIn {
   animation-name: bounceIn;
 }
@@ -141,7 +162,6 @@ body {
     transform: scale3d(1, 1, 1);
   }
 }
-
 .animated {
   animation-duration: 1.25s;
 }
