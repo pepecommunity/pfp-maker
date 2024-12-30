@@ -16,7 +16,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "vercel": "^28.18.5"
+    "vercel": "^39.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
