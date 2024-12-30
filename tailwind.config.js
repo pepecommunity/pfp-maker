@@ -1,21 +1,17 @@
-/* eslint-env node */
-module.exports = {
-  purge: {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  },
-  darkMode: false, // or 'media' or 'class'
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      
-      fontFamily: {
-        main: ["True Gore"],
-        regular: ["True Gore"], // Changed to True Gore
+      colors: {
+        mainBlue: "#d9d7d7",
+        secondaryBlue: "#8f8b8b",
       },
-     
+      fontFamily: {
+        main: ["KapsalonPrint"],
+        regular: ["Gordita"],
+      },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

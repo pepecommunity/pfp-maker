@@ -116,7 +116,7 @@ function App() {
     const importStickers = async () => {
       // Import images from all subfolders in the 'assets/stickers' directory
       const imageContext = import.meta.glob(
-        "./assets/stickers/*.{png,jpg,jpeg,svg}"
+        "./assets/stickers/*.(png|jpg|jpeg|svg)"
       );
       const imagePaths = await Promise.all(
         Object.values(imageContext).map(async (importPromise) => {
@@ -132,10 +132,18 @@ function App() {
     importStickers();
 
     const newCanvas = new fabric.Canvas(canvasRef.current, {
+      width: window.innerWidth <= 768 ? 300 : 550,
+      height: window.innerWidth <= 768 ? 300 : 550,
       backgroundColor: "#fff",
     });
 
-  
+    // const newCanvas = new fabric.Canvas(canvasRef.current, {
+    //   width: 300,
+    //   height: 300,
+    //   backgroundColor: "#fff",
+    // });
+    // changeBackgroundImage(bgImg, newCanvas);
+
     setCanvas(newCanvas);
 
     // Event listener for object selection
@@ -151,6 +159,13 @@ function App() {
     newCanvas.on("selection:cleared", () => {
       setSelectedObject(null);
     });
+
+    // fabric.Image.fromURL(bgImg, (img) => {
+    //   newCanvas.setBackgroundImage(img, newCanvas.renderAll.bind(newCanvas), {
+    //     scaleX: newCanvas.width / img.width,
+    //     scaleY: newCanvas.height / img.height,
+    //   });
+    // });
 
     return () => {
       newCanvas.dispose();
@@ -218,7 +233,7 @@ function App() {
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const uint8Array = new Uint8Array(arrayBuffer);
 
-    for (let i = 0; i < byteString.length; i++) { // Corrected line
+    for (let i = 0; i < byteString.length; i++) {
       uint8Array[i] = byteString.charCodeAt(i);
     }
 
@@ -253,7 +268,7 @@ function App() {
     canvas.clear();
     canvas.backgroundColor = "#fff";
 
-
+    // changeBackgroundImage(bgImg, canvas)
   };
 
   const handleDelete = () => {
@@ -271,7 +286,7 @@ function App() {
   const handleAddText = () => {
     const text = prompt("Enter your text:");
 
-    const font = new FontFace("True Gore", "url(/fonts/TrueGore-Regular.otf)"); // Changed to True Gore
+    const font = new FontFace("Bebas Kai", "url(/fonts/BebasKai.ttf)");
 
     font
       .load()
@@ -279,7 +294,7 @@ function App() {
         document.fonts.add(loadedFont);
 
         const newText = new fabric.Text(text, {
-          fontFamily: "True Gore", // Changed to True Gore
+          fontFamily: "Bebas Kai",
           fontSize: 40,
           fill: "#000",
           fontWeight: "bold",
@@ -304,6 +319,18 @@ function App() {
     }
   };
 
+  // useEffect(() => {
+  //   if (selectedObject && canvas) {
+  //     const isObjectInFront =
+  //       selectedObject === canvas.getObjects()[canvas.getObjects().length - 1];
+  //     const isObjectInBack = selectedObject === canvas.getObjects()[0];
+  //     setIsAtFront(isObjectInFront);
+  //     setIsAtBack(isObjectInBack);
+  //   } else {
+  //     setIsAtFront(false);
+  //     setIsAtBack(false);
+  //   }
+  // }, [selectedObject, canvas]);
 
   return (
     <div className={`min-h-screen`}>
@@ -335,7 +362,7 @@ function App() {
         <meta name="twitter:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings."  />
         <meta name="twitter:image" content="https://ninjacat.ch/src/assets/NC-twitter-card-1200x627.png" />
         <link rel="canonical" href="https://ninjacat.ch/" />
-      </Helmet>      
+      </Helmet>
        <div className="flex item-center justify-center mx-5">
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
@@ -393,7 +420,7 @@ function App() {
           </div>
         )}
       </div>
-
+  
 
       <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
         <input
@@ -401,7 +428,8 @@ function App() {
           accept="image/*"
           hidden
           ref={bgImgInputRef}
-          onChange={handleBackgroundImageChange}/>
+          onChange={handleBackgroundImageChange}
+        />
 
         <input
           type="file"
@@ -409,31 +437,34 @@ function App() {
           hidden
           ref={stickerImgInputRef}
           onChange={handleAddSticker}
-          />
-
+        />
         <div className="flex-1 px-5">
-          
-<div className="mx-auto mb-7 bg-transparent rounded-xl relative w-full h-full">
-<div className="canvas-container mx-auto mb-7 bg-transparent rounded-xl relative w-full h-full">
-          <canvas
-          ref={canvasRef}
-          />
-  {selectedObject && (
-    <img
-      onClick={handleDelete}
-      id="selected-img"
-      className="absolute cursor-pointer"
-      style={{
-        top: selectedObject.top - 30,
-        left: selectedObject.left,
-      }}
-      src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
-      width={20}
-      height={20}
-      alt=""
-    />
-  )}
-</div>
+          <div
+            className={`mx-auto mb-7 bg-transparent rounded-xl relative
+          ${isMobile ? "canvas-mobile" : "w-[550px]"}
+          `}
+          >
+            <canvas
+              ref={canvasRef}
+              // style={{ width: "550px", height: "550px" }}
+            />
+            {selectedObject && (
+              <img
+                onClick={handleDelete}
+                id="selected-img"
+                style={{
+                  position: "absolute",
+                  top: selectedObject.top - 30,
+                  left: selectedObject.left,
+                  cursor: "pointer",
+                }}
+                src="https://cdn-icons-png.flaticon.com/512/5610/5610967.png"
+                width={20}
+                height={20}
+                alt=""
+              />
+            )}
+          </div>
           {selectedObject && selectedObject.type === "text" && (
             <div className="flex justify-center my-10">
               <SketchPicker color={textColor} onChange={handleColorChange} />
@@ -469,12 +500,12 @@ function App() {
             </div>
             <div
               onClick={handleCanvasClear}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 RESET
               </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
 
             <div
@@ -484,40 +515,41 @@ function App() {
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 SAVE MEME
               </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
 
             <div
               onClick={copyCanvasToClipboard}
-              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w/full sm:w/full md:w-1/3 lg:w-1/3"
+              className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
                 COPY MEME
               </p>
-              <div className="absolute top-0 left-0 w/full h/full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
-  <div className="w-0 lg:w-1 h-full bg-white">.</div>
-  <div className="w-full pl-5">
-    <div className="flex flex-wrap mt-10 justify-center lg:justify-start overflow-hidden">
-      {stickers.length != 0 &&
-        stickers.map((img, i) => (
-          <img
-            src={img}
-            key={i}
-            onClick={() => handleAddImage(img)}
-            className="w-[150px] h-[150px] m-2 cursor-pointer"
-            alt={`sticker-${i}`}
-          />
-        ))}
-    </div>
-  </div>
-</div>      
-</div>
-</div>
+          <div className="w-0 lg:w-1 h-full bg-white">.</div>
+          <div className="w-full pl-5">
+            {/* <h1 className="text-4xl text-center text-white mt-10">
+              Create Your PFP
+            </h1> */}
+            <div className="flex flex-wrap mt-10 justify-center lg:justify-start">
+              {stickers.length != 0 &&
+                stickers.map((img, i) => (
+                  <img
+                    src={img}
+                    key={i}
+                    onClick={() => handleAddImage(img)}
+                    className="  w-[150px] h-[150px] m-2 cursor-pointer"
+                  ></img>
+                ))}
+            </div>
+          </div>
+        </div>
+      </div>
       <Analytics />
     </div>
      );

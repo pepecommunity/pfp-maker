@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
+import PropTypes from "prop-types";
 
 const ImageScroller = ({
   canvas,
@@ -55,7 +56,7 @@ const ImageScroller = ({
                   src={img}
                   key={i}
                   onClick={() => {
-                    if (category.toLowerCase() == "backgrounds") {
+                    if (category.toLowerCase() === "backgrounds") {
                       changeBackgroundImage(img, canvas);
                     } else {
                       handleAddImage(img);
@@ -89,6 +90,13 @@ const ImageScroller = ({
       ))}
     </div>
   );
+};
+
+ImageScroller.propTypes = {
+  canvas: PropTypes.object.isRequired,
+  categorizedImages: PropTypes.object.isRequired,
+  handleAddImage: PropTypes.func.isRequired,
+  changeBackgroundImage: PropTypes.func.isRequired,
 };
 
 export default ImageScroller;
