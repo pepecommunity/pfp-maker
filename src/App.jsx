@@ -73,40 +73,20 @@ function App() {
 
   useEffect(() => {
     const changeBackgroundImage = (backgroundImage, canvas) => {
-      console.log(isMobile);
       fabric.Image.fromURL(backgroundImage, (img) => {
-        // Calculate the new dimensions respecting the maximum width of 550px
-        let newWidth = img.width;
-        let newHeight = img.height;
-  
-        let maxWidth = isMobile ? 300 : 550;
-  
-        if (img.width > maxWidth) {
-          canvas.setWidth(newWidth);
-          canvas.setHeight(newHeight);
-        }
-
+        // Calculate the new dimensions to fit the canvas while maintaining aspect ratio
+        const canvasWidth = isMobile ? 300 : 550;
+        const canvasHeight = isMobile ? 300 : 550;
+        const scale = Math.min(canvasWidth / img.width, canvasHeight / img.height);
+        img.scale(scale);
+        canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
       });
-      }; 
-  
+    };
+
     if (!canvas) return;
-  
+
     if (backgroundImage) {
       changeBackgroundImage(backgroundImage, canvas);
-    } else {
-      canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
-    }
-  }, [canvas, backgroundImage, isMobile]);
-     
-  useEffect(() => {
-    const changeBackgroundImage = (image, canvas) => {
-      canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas));
-    };
-  
-    if (!canvas) return;
-  
-    if (backgroundImage) {
-      changeBackgroundImage(backgroundImage, canvas); // Use it here
     } else {
       canvas.setBackgroundImage("", canvas.renderAll.bind(canvas));
     }
@@ -541,8 +521,7 @@ function App() {
           </div>
         </div>
 
-        <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">
-          <div className="w-0 lg:w-1 h-full bg-white"></div>
+        <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">          <div className="w-0 lg:w-1 h-full bg-white"></div>
           <div className="w-full pl-5">
             {/* <h1 className="text-4xl text-center text-white mt-10">
               Create Your PFP
