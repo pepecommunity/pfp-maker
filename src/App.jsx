@@ -172,6 +172,17 @@ function App() {
     };
   }, []);
 
+ 
+    // Remove the redundant font loading code
+    // const font = new FontFace("TrueGore", "url(/src/assets/fonts/TrueGore-Regular.otf)");
+
+    // font.load().then((loadedFont) => {
+    //   document.fonts.add(loadedFont);
+    // }).catch((error) => {
+    //   console.error("Failed to load the font:", error);
+    // });
+
+
   const handleAddImage = (image) => {
     fabric.Image.fromURL(image, (img) => {
       img.scaleToWidth(200);
@@ -366,9 +377,9 @@ function App() {
        <div className="flex item-center justify-center mx-5">
         {isMobile ? (
           <div className="w-full pt-10 flex flex-col">
-            <div className="w-full flex items-center justify-center gap-10">
-              <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
-              <h1 className=" bounceIn animated text-white mt-10 text-5xl lg:mb-10 md:text-7xl text-center font-black ">
+            <div className="w-full flex items-center justify-center gap-4">
+              <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
+              <h1 className="bounceIn animate text-center h1">
                 Ninja Cat PFP Maker
               </h1>
             </div>
@@ -395,7 +406,7 @@ function App() {
           </div>
         ) : (
           <div className="w-full pt-5 flex items-center justify-around">
-            <img src={logo} className="w-[100px] h-[100px]" style={{ borderRadius: '20px' }} alt="ninja Cat project Logo" />
+            <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
             <img src={textImg} className="h-[150px]" alt="" />
             <div className="flex gap-5">
               <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
@@ -441,12 +452,12 @@ function App() {
         <div className="flex-1 px-5">
           <div
             className={`mx-auto mb-7 bg-transparent rounded-xl relative
-          ${isMobile ? "canvas-mobile" : "w-[550px]"}
+          ${isMobile ? "canvas-mobile" : "w-[550px] h-[550px]"}
           `}
           >
             <canvas
               ref={canvasRef}
-              // style={{ width: "550px", height: "550px" }}
+              style={{ width: isMobile ? "300px" : "550px", height: isMobile ? "300px" : "550px" }}
             />
             {selectedObject && (
               <img
@@ -513,7 +524,7 @@ function App() {
               className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
-                SAVE MEME
+                SAVE 
               </p>
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
@@ -523,7 +534,7 @@ function App() {
               className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
             >
               <p className=" text-center text-2xl tracking-wider font-medium relative">
-                COPY MEME
+                COPY 
               </p>
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>

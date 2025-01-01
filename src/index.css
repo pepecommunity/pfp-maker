@@ -1,38 +1,35 @@
-/* eslint-disable-next-line */
 @tailwind base;
-/* eslint-disable-next-line */
 @tailwind components;
-/* eslint-disable-next-line */
 @tailwind utilities;
 
 @font-face {
-  font-family: "KapsalonPrint";
-  src: url("./assets/fonts/KapsalonPrintDEMO.otf") format("opentype");
-  
-}
-@font-face {
   font-family: "True Gore";
-  src: url("./assets/fonts/TrueGore-Regular.otf") format("opentype");
+  src: url("./assets/fonts/TrueGore-Regular.otf") format("opentype"); 
 }
+
 * {
   margin: 0;
   padding: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; /* Standard property added for compatibility */
-  font-family: "KapsalonPrint", sans-serif;
-}
-
-h1.bounceIn.animated.text-white.mt-10.text-5xl.lg\:mb-10.md\:text-7xl.text-center.font-black {
-  font-family: "True Gore", sans-serif !important;
+  font-family: "True Gore", sans-serif; 
   color: #880808;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-  font-size: 3rem;
-  line-height: 1.1;
-  width: 100%;
-  text-align: center;
-  padding-top: 0;
-  margin-top: 0;
+
+}
+
+.logo {
+  border-radius: 20px;
+}
+
+.h1 {
+  font-size: 2rem;
+  font-family: "True Gore", sans-serif; 
+  color: #880808;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+
+
 }
 
 body {
@@ -45,13 +42,6 @@ body {
   -ms-overflow-style: none; /* IE and Edge */  
 }
 
-.font-regular {
-  font-family: Gordita, sans-serif !important;
-}
-
-.shadow-text {
-  text-shadow: rgba(0, 0, 0, 0.298039) 0px 5px 0px;
-}
 
 @keyframes marquee {
   0% {
@@ -61,17 +51,6 @@ body {
   100% {
     transform: translateX(-100%);
   }
-}
-
-.blood {
-  color: white;
-  text-shadow: 4px 4px 1px #300000, 4px 6px 1px #400000, 4px 8px 1px #500000,
-    4px 10px 1px #600000, 4px 12px 1px #700000, 4px 14px 1px #800000,
-    4px 16px 1px #900000, 4px 18px 1px #a00000, 4px 20px 1px #b00000,
-    4px 22px 1px #c00000, 4px 24px 1px #d00000, 4px 26px 1px #e00000,
-    4px 28px 1px #f00000, 4px 30px 1px #fa0000, 4px 32px 1px #fb0000,
-    4px 34px 1px #fc0000, 4px 36px 1px #fd0000, 4px 38px 1px #fe0000,
-    4px 40px 2px #ff0000;
 }
 
 .canvas-container {
