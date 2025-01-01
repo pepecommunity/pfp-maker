@@ -277,6 +277,8 @@ function App() {
   const handleAddText = () => {
     const text = prompt("Enter your text:");
 
+    if (!text) return;
+
     const font = new FontFace("Bebas Kai", "url(/fonts/BebasKai.ttf)");
 
     font
@@ -285,19 +287,53 @@ function App() {
         document.fonts.add(loadedFont);
 
         const newText = new fabric.Text(text, {
-          fontFamily: "Bebas Kai",
-          fontSize: 40,
-          fill: "#000",
+          fontFamily: "Bebas Kai, sans-serif", // Add a fallback font
+          fontSize: 45, // Increase font size
+          fill: "#880808", // Text color
+          stroke: "#fff", // White outline
+          strokeWidth: 1, // Adjust outline width
           fontWeight: "bold",
           left: 10,
           top: 10,
           charSpacing: 1,
+          shadow: new fabric.Shadow({
+            color: "#000", // Black shadow
+            blur: 0,
+            offsetX: 1,
+            offsetY: 1,
+          }),
         });
 
+        // Ensure the text is added after the background image
         canvas.add(newText);
+        canvas.bringToFront(newText);
+        canvas.renderAll();
       })
       .catch((error) => {
         console.error("Failed to load the font:", error);
+
+        // Fallback to default font if loading fails
+        const newText = new fabric.Text(text, {
+          fontFamily: "sans-serif",
+          fontSize: 45, // Increase font size
+          fill: "#880808", // Text color
+          stroke: "#fff", // White outline
+          strokeWidth: 1, // Adjust outline width
+          fontWeight: "bold",
+          left: 10,
+          top: 10,
+          charSpacing: 1,
+          shadow: new fabric.Shadow({
+            color: "#000", // Black shadow
+            blur: 0,
+            offsetX: 1,
+            offsetY: 1,
+          }),
+        });
+
+        canvas.add(newText);
+        canvas.bringToFront(newText);
+        canvas.renderAll();
       });
   };
 
