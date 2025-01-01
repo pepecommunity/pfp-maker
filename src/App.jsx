@@ -558,7 +558,7 @@ function App() {
         </div>
 
         <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">          <div className="w-0 lg:w-1 h-full bg-white"></div>
-          <div className="w-full pl-5">
+          <div className="w-full">
             {/* <h1 className="text-4xl text-center text-white mt-10">
               Create Your PFP
             </h1> */}
