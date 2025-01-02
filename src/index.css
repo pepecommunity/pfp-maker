@@ -32,6 +32,15 @@
 
 }
 
+.h2 {
+  font-size: 4rem;
+  font-family: "True Gore", sans-serif; 
+  color: #880808;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+
+
+}
+
 body {
   background-image: url("./assets/background.png") !important;
   background-size: cover;

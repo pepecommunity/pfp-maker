@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import logo from "./assets/logo.png";
 // eslint-disable-next-line no-unused-vars
-import bgImg from "./assets/bg.png";
-import textImg from "./assets/text.png";
+// import bgImg from "./assets/bg.png";
+// import textImg from "./assets/text.png";
 import { SketchPicker } from "react-color";
 import dexscreenerIcon from "./assets/Dexscreener 120x120.png";
 import dextoolsIcon from "./assets/dextools 120x120.png";
@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // You can adjust this threshold as needed
+      setIsMobile(window.innerWidth <= 768); 
     };
 
     // Initial check
@@ -390,64 +390,65 @@ function App() {
         <meta name="twitter:image" content="/NC-twitter-card-1200x627.png" />
         <link rel="canonical" href="https://ninjacat.ch/" />
       </Helmet>
-       <div className="flex item-center justify-center mx-5">
-        {isMobile ? (
-          <div className="w-full pt-10 flex flex-col">
-            <div className="w-full flex items-center justify-center gap-4">
-              <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
-              <h1 className="bounceIn animate text-center h1">
-                Ninja Cat PFP Maker
-              </h1>
-            </div>
-            <div className="flex items-center justify-center pt-10 gap-5">
-              <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
-              </a>
-            </div>
-          </div>
-        ) : (
-          <div className="w-full pt-5 flex items-center justify-around">
-            <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
-            <img src={textImg} className="h-[150px]" alt="" />
-            <div className="flex gap-5">
-              <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
-                <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
-                <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
-                <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
-                <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
-              </a>
-              <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
-                <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
-              </a>
-            </div>
-          </div>
-        )}
+      <div className="flex item-center justify-center mx-5">
+  {isMobile ? (
+    <div className="w-full pt-10 flex flex-col">
+      <div className="w-full flex items-center justify-center gap-4">
+        <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
+        <h1 className="text-center h1">
+            Ninja Cat PFP Maker
+        </h1>      
       </div>
-  
+      <div className="flex items-center justify-center pt-10 gap-5">
+        <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
+          <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
+          <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
+          <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
+          <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
+          <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
+          <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
+        </a>
+      </div>
+    </div>
+  ) : (
+    <div className="w-full pt-5 flex items-center justify-around">
+      <img src={logo} className="w-[100px] h-[100px] logo" alt="ninja Cat project Logo" />
+      <h2 className="text-center h2">
+          Ninja Cat PFP Maker
+      </h2>      
+      <div className="flex gap-5">
+        <a href="https://t.me/solninjacatsol" target="_blank" rel="noreferrer">
+          <img src={tgIcon} alt="Telegram" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://x.com/SolNinjaCatSol" target="_blank" rel="noreferrer">
+          <img src={xIcon} alt="X" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
+          <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
+          <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
+          <img src={dexscreenerIcon} alt="Dexscreener" className="w-[40px] h-[40px]" />
+        </a>
+        <a href="https://www.dextools.io/app/en/solana/pair-explorer/F9MJEtLDppZA9d6Su2HomT1Bay3DjZaKSP8SamcrYDP4" target="_blank" rel="noreferrer">
+          <img src={dextoolsIcon} alt="Dextools" className="w-[40px] h-[40px]" />
+        </a>
+      </div>
+    </div>
+  )}
+</div>  
 
       <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
         <input
@@ -559,9 +560,7 @@ function App() {
 
         <div className="flex flex-1 mt-5 w-full lg:w-[60%] px-5 lg:pl-0 pb-10 lg:pb-0">          <div className="w-0 lg:w-1 h-full bg-white"></div>
           <div className="w-full">
-            {/* <h1 className="text-4xl text-center text-white mt-10">
-              Create Your PFP
-            </h1> */}
+            
             <div className="flex flex-wrap mt-10 justify-center lg:justify-start">
               {stickers.length != 0 &&
                 stickers.map((img, i) => (
