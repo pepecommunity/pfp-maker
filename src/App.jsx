@@ -75,8 +75,8 @@ function App() {
     const changeBackgroundImage = (backgroundImage, canvas) => {
       fabric.Image.fromURL(backgroundImage, (img) => {
         // Calculate the new dimensions to fit the canvas while maintaining aspect ratio
-        const canvasWidth = isMobile ? 300 : 550;
-        const canvasHeight = isMobile ? 300 : 550;
+        const canvasWidth = isMobile ? 300 : 400;
+        const canvasHeight = isMobile ? 300 : 400;
         const scale = Math.min(canvasWidth / img.width, canvasHeight / img.height);
         img.scale(scale);
         canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
@@ -112,8 +112,8 @@ function App() {
     importStickers();
 
     const newCanvas = new fabric.Canvas(canvasRef.current, {
-      width: window.innerWidth <= 768 ? 300 : 550,
-      height: window.innerWidth <= 768 ? 300 : 550,
+      width: window.innerWidth <= 768 ? 300 : 400,
+      height: window.innerWidth <= 768 ? 300 : 400,
       backgroundColor: "#fff",
     });
 
@@ -468,7 +468,7 @@ function App() {
         <div className="flex-1 px-5">
           <div
             className={`mx-auto mb-7 bg-transparent rounded-xl relative
-          ${isMobile ? "canvas-mobile" : "w-[550px] h-[550px]"}
+          ${isMobile ? "canvas-mobile" : "w-[400px] h-[400px]"}
           `}
           >
             <canvas
