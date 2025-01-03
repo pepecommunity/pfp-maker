@@ -450,8 +450,7 @@ function App() {
   )}
 </div>  
 
-      <div className="w-full flex lg:py-10 flex-col-reverse lg:flex-row justify-center">
-        <input
+<div className="w-full flex lg:py-10 flex-col lg:flex-row justify-center pt-10">          <input
           type="file"
           accept="image/*"
           hidden
