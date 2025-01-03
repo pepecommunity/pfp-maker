@@ -516,9 +516,6 @@ function App() {
               </p>
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0 transition duration-300 ease-in-out group-hover:opacity-50"></div>
             </div>
-            <p className="text-center text-2xl font-medium my-5">
-            SCROLL DOWN FOR NINJA CAT ASSETS
-          </p>
             <div
               onClick={handleAddText}
               className="border-4 cursor-pointer border-black bg-white  px-5 py-2 rounded-lg flex justify-center items-center overflow-hidden relative group transition-all duration-300 ease-in-out transform hover:scale-105 w-full sm:w-full md:w-1/3 lg:w-1/3"
