@@ -378,7 +378,7 @@ function App() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content="/NC-twitter-card-1200x627.png" />
+        <meta property="og:image" content="/TwitterCardImage1200x600.png" />
         <meta property="og:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings." />
         <meta property="og:updated_time" content="1734829524" />
         <meta property="og:image:alt" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings." />
@@ -387,7 +387,7 @@ function App() {
         <meta property="twitter:url" content="https://ninjacat.ch" />
         <meta name="twitter:title" content="Ninja Cat CTO - $NC: Solana's Shadow Warrior" />
         <meta name="twitter:description" content="Welcome to Ninja Cat PFP MAKER, where you can create your custom profile picture, connect via our socials, and explore Dex listings." />
-        <meta name="twitter:image" content="/NC-twitter-card-1200x627.png" />
+        <meta name="twitter:image" content="/TwitterCardImage1200x600.png" />
         <link rel="canonical" href="https://ninjacat.ch/" />
       </Helmet>
       <div className="flex item-center justify-center mx-5">
