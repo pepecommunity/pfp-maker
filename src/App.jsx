@@ -409,7 +409,7 @@ function App() {
         <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
           <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
         </a>
-        <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
+        <a href="https://www.tiktok.com/@ninjacatonsol" target="_blank" rel="noreferrer">
           <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
         </a>
         <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
@@ -436,7 +436,7 @@ function App() {
         <a href="https://www.instagram.com/solninjacatsol" target="_blank" rel="noreferrer">
           <img src={igIcon} alt="Instagram" className="w-[40px] h-[40px]" />
         </a>
-        <a href="https://www.tiktok.com/@solninjacat" target="_blank" rel="noreferrer">
+        <a href="https://www.tiktok.com/@ninjacatonsol" target="_blank" rel="noreferrer">
           <img src={tiktokIcon} alt="TikTok" className="w-[40px] h-[40px]" />
         </a>
         <a href="https://dexscreener.com/solana/f9mjetldppza9d6su2homt1bay3djzaksp8samcrydp4" target="_blank" rel="noreferrer">
